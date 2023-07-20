@@ -6,10 +6,37 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>Login</title>
+	<style type="text/css">
+		tr,td{
+			padding: 10px;
+		}
+	</style>
 </head>
 <body>
+	<center>
 <h1>Welcome to my Login Page</h1>
+{% if msg %}
+	<b style="color:red">{{msg}}</b>
+{% endif %}
+<form method="post" action="{% url 'login' %}">
+	{% csrf_token %}
+	<table>
+		<tr>
+			<td>Email</td>
+			<td><input type="email" name="email">
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" name="password">
+		</tr>
+		<tr>
+			<td><input type="submit" name="login" value="Login" class="btn btn-primary">
+			<td><input type="button" name="forgotpw" value="Forgot Paasword" class="btn btn-primary">
+		</tr>
+	
+</form>
+</center>
 </body>
 </html>
 {% endblock %}
