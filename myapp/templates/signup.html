@@ -21,7 +21,7 @@
 
 
 		<h1>Welcome to my Sign Up Page</h1>
-		<form method="post" action="{% url 'signup' %}">
+		<form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
 			{% csrf_token %}
 			<table>
 				<tr>
@@ -56,6 +56,10 @@
 				<tr>
 					<td>Confirm Password</td>
 					<td><input type="password" name="cpassword"></td>
+				</tr>
+				<tr>
+					<td>Profile_Pic</td>
+					<td><input type="file" name="profile_pic"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="submit" name="action" value="Sign Up" class="btn btn-primary"></td>

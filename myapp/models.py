@@ -20,6 +20,7 @@ class User(models.Model):
 	mobile=models.PositiveSmallIntegerField()
 	gender=models.CharField(max_length=100)
 	password=models.CharField(max_length=100)
+	profile_pic=models.ImageField(upload_to = 'profile_pic/',default='')
 
 
 	def __str__ (self):
