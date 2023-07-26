@@ -1,0 +1,73 @@
+{% extends 'header.html'%}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>profile</title>
+	<style type="text/css">
+		tr,td{
+			padding: 10px;
+		}
+	</style>
+</head>
+<body>
+<center>
+		{% if msg %}
+			<b style="color:blue">{{msg}}</b>
+		{% endif %}
+
+
+		<h1>EDIT PROFILE</h1>
+		<form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+			{% csrf_token %}
+			<table>
+				<tr>
+					<td>First Name</td>
+					<td><input type="text" name="fname" value="{{user.fname}}"></td>
+				</tr>
+				<tr>
+					<td>Last Name</td>
+					<td><input type="text" name="lname" value="{{user.lname}}"></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="email" name="email" value="{{user.email}}" readonly></td>
+				</tr>
+				<tr>
+					<td>Mobile</td>
+					<td><input type="text" name="mobile" value="{{user.mobile}}"></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td><textarea rows="5" cols="22" name="address">{{user.address}}</textarea></td>
+				</tr>
+				<tr>
+					<td>Gender</td>
+					{% if user.gender == "male" %}
+						<td><input type="radio" name="gender" value="male" checked>Male</td>
+						<td><input type="radio" name="gender" value="female">Female</td>
+					{% else %}
+						<td><input type="radio" name="gender" value="male">Male</td>
+						<td><input type="radio" name="gender" value="female" checked>Female</td>
+					{% endif %}
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<img src="{{user.profile_pic.url}}" width="100px" height="100px">
+					</td>
+				</tr>
+				<tr>
+					<td>Profile_Pic</td>
+					<td><input type="file" name="profile_pic"></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" name="action" value="Update Profile" class="btn btn-primary"></td>
+				</tr>
+			</table>
+		</form>
+	</center>
+</body>
+</html>
+{% endblock %}
